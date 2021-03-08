@@ -1,0 +1,398 @@
+:root {
+    --primary: #FFCE00;
+    --secondary: #FE4880;
+    --dark: #212121;
+    --light: #F3F3F3;
+  }
+  /* selects all variables and applies style */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: montserrat, sans-serif;
+    width: 100%;
+    min-height: 100%;
+  }
+  #match-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: green;
+    width: 100px;
+    height: 100px;
+    padding: 50px 30px 10px 30px;
+    text-align: center;
+    z-index: 100;
+    color: white;
+    outline: 10px solid #ffff;
+    outline-offset: -30px;
+  }
+  #no-match-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: black;
+    width: 100px;
+    height: 100px;
+    padding: 50px 30px 10px 30px;
+    text-align: center;
+    z-index: 100;
+    color: Red;
+    outline: 10px solid #ffff;
+    outline-offset: -30px;
+  }
+  .gameBoardContainer {
+    width: 100%;
+    height: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 0px 0px;
+  }
+  .card {
+    margin: 5px auto 5px; /* 100px on top, auto to center it and 0 on the bottom  */
+    width: 100px;
+    height: 120px;
+    perspective: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .card__inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d; /* allows 3d transformation */
+    cursor: pointer; /* gives the style that it can be clicked */
+    position: relative; /* since we need some absolute positioning */
+  }
+  /* if card is flipped - it will transform - will use javascript to add ".is-flipped" class to the card_inner when the card is clicked  */
+  .card__inner.is-flipped {
+    transform: rotateY(180deg);
+  }
+  .card__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    /* hides the backface when we rotate/transform the item */
+    -webkit-backface-visibility: hidden; /* can we use this? */
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
+  }
+  .card__face--front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h1 {
+    color: black;
+    font-size: 8pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card__face--back {
+    background-color: var(--light);
+    transform: rotateY(180deg);
+  }
+  .card__content {
+    width: 100%;
+    height: 100%;
+  }
+  .card__header {
+    position: relative;
+    padding: 6px 9px 5px 9px;
+  }
+  .card__header:after {
+    content: "";
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: 0 0 30% 0;
+    background-image: linear-gradient(
+      to bottom left,
+      var(--primary) 10%,
+      var(--secondary) 115%
+    );
+  }
+  .c-pattern {
+    width: 100px;
+    height: 120px;
+    display: flex;
+    border-radius: 16px;
+    /* border: 10px solid #ffff; */
+    object-fit: cover;
+    align-items: center;
+    justify-content: center;
+  }
+  /* .small-c-pattern{
+    width: 100%;
+    height:100%;
+    display:flex;
+    object-fit: cover;
+    align-items:center;
+    justify-content:center;
+    border-radius: 16px;
+  } */
+  .e-photo {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 0;
+    border-radius: 50%;
+    background-color: #ffff;
+    border: 3px solid #ffff;
+    object-fit: cover;
+  }
+  .card__body {
+    padding: 4px;
+  }
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 5px 2px 5px;
+    font-size: 6pt;
+  }
+  .hidden {
+    /* visibility: hidden; */
+    display: none;
+  }
+  #hide-me {
+    /* visibility: hidden; */
+    display: none;
+  }
+  #modal {
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: orange;
+    /* z-index: 99999; */
+    height: 100%;
+    width: 100%;
+  }
+  .modalcontent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 60%;
+    height: 60%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .startHeader {
+    font-size: 23pt;
+    margin: 30px 30px 15px 30px;
+    text-transform: uppercase;
+    color: orangered;
+    font-weight: bold;
+  }
+  #startParagraph {
+    font-size: 11pt;
+    margin: 10px;
+  }
+  .clickStart {
+    font-size: 8pt;
+    margin: 15px 5px 5px 5px;
+  }
+  /* #start-button {
+      background-color: orangered;
+      color: whitesmoke;
+      width: 15%;
+      height: fit-content;
+      align-self: center;
+      padding: 5px;
+      border: none;
+    } */
+  #small-card-shown {
+    display: none;
+  }
+  #hidden-lg-card {
+    display: flex;
+  }
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+  .start {
+    background-color: orangered;
+    color: whitesmoke;
+    width: 100px;
+    height: auto;
+    margin: 8px 15px 5px 15px;
+    align-self: center;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+  }
+  @media only screen and (min-width: 768px) {
+    body {
+      font-family: montserrat, sans-serif;
+      width: 100%;
+      height: 100%;
+    }
+    .desktop {
+      display: block;
+    }
+    .mobile {
+      display: none;
+    }
+    .gameBoardContainer {
+      width: 100%;
+      height: 95%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 0px 0px 0px 0px;
+    }
+    .card {
+      margin: 13px; /* 100px on top, auto to center it and 0 on the bottom  */
+      width: 14%;
+      height: 50%;
+      perspective: 1000px;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+    .card__face {
+      height: 66%;
+    }
+    .c-pattern {
+      width: 100%;
+      height: 100%;
+    }
+    #no-match-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: black;
+      width: 250px;
+      height: 250px;
+      text-align: center;
+      /* display:flex;
+      justify-content:center;
+      align-items:center; */
+      padding: 10px 20px;
+    }
+    .hidden {
+      /* visibility: hidden; */
+      display: none;
+    }
+    #modal {
+      font-family: Arial, Helvetica, sans-serif;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: orange;
+      /* z-index: 99999; */
+      height: 100%;
+      width: 100%;
+    }
+    .modalcontent {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      width: 50%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    #start-button {
+      background-color: orangered;
+      color: whitesmoke;
+      width: 100px;
+      height: fit-content;
+      align-self: center;
+      padding: 5px;
+      border: none;
+    }
+    #match-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: green;
+      width: 250px;
+      height: 250px;
+      justify-content: center;
+      align-items: center;
+    }
+    #small-card-shown {
+      display: none;
+    }
+    #hidden-lg-card {
+      display: flex;
+    }
+    h1 {
+      color: black;
+      font-size: 14pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card__header {
+      position: relative;
+      padding: 15px 15px;
+    }
+    .e-photo {
+      margin: 10px auto;
+      height: 123px;
+      width: 123px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    p {
+      margin: 10px 0px;
+      font-size: 12pt;
+    }
+    .startHeader {
+      font-size: 31pt;
+      margin: 100px 60px 15px 60px;
+      text-transform: uppercase;
+    }
+    #startParagraph {
+      font-size: 13pt;
+      margin: 15px;
+    }
+    .clickStart {
+      font-size: 11pt;
+      margin: 15px 5px 5px 5px;
+    }
+    .start {
+      background-color: orangered;
+      color: whitesmoke;
+      width: 150px;
+      height: 35px;
+      margin: 15px;
+      align-self: center;
+      border: none;
+    }
+  }

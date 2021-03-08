@@ -1,0 +1,354 @@
+<html>
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>2020 Memory Game</title>
+   <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+   <!-- Start Page 1 -->
+   <div id="modal" class="start-page">
+      <div class="modalcontent">
+         <h1 class="startHeader">Welcome to the 2020 Memory Game!</h1>
+         <p id="startParagraph">Because who doesn't want to remember a year like this one?</p>
+         <button class="start" onclick='gameDisplay()'>Start Game</button>
+         <p class="clickStart">Press Start to begin the game.</p>
+      </div>
+   </div>
+
+
+   <!-- No Match Msg Box -->
+   <div class="hidden" id="no-match-box">
+      <h2>Not a match.</h2>
+   </div>
+   <!-- Timer -->
+   <div id="timer"></div>
+   <!-- The button below can be uncommented if you want the game player to be able to End the time clock manually during the game -->
+   <!-- <button id ="end_timer" onclick="clearInterval(timerFunction)">End Timer</button> -->
+   <button onclick="resetFunction()">Reset Game</button>
+
+   <!-- Game Board -->
+   <div class="gameBoardContainer hidden" id="gameBoardContainer">
+      <!-- Match Msg Box -->
+      <div class='hidden' id="match-box">
+         <h2>It's a match!</h2>
+      </div>
+      <!-- Card 1 -->
+      <div class="card" id="asteroid-1">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner asteroid">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack1">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventOne">Asteroid almost hits earth on Friday the 13th</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageOne" src="./images/asteroid.jpeg" alt="image of 2020 event" class="e-photo" />
+                     <p><a onclick="linkClick(event)" id="linkOne"
+                           href="https://earthsky.org/space/asteroid-2020-vt4-skimmed-atmosphere-fri-nov-13-2020"
+                           target="_blank">Learn more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Card 2  -->
+      <div class="card" id="asteroid-2">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner asteroid">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack2">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventOne">Asteroid almost hits earth on Friday the 13th</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageOne" src="./images/asteroid.jpeg" alt="image of 2020 event" class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkOne"
+                           href="https://earthsky.org/space/asteroid-2020-vt4-skimmed-atmosphere-fri-nov-13-2020">Learn
+                           more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card" id="toilet-paper-1">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner toilet-paper">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack3">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventThree">Toilet Paper Shortage</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageThree" src="./images/empty-toilet-paper-rolls-image.jpg"
+                        alt="image of empty toilet paper rolls" class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkThree"
+                           href="https://www.sciencealert.com/study-finds-just-the-kind-of-people-who-were-panic-buying-all-of-the-toilet-paper">Learn
+                           more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 4  -->
+      <div class="card" id="toilet-paper-2">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner toilet-paper">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack4">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventFour">Toilet Paper Shortage</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageFour" src="./images/empty-toilet-paper-rolls-image.jpg"
+                        alt="image of empty toilet paper rolls" class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkFour"
+                           href="https://www.sciencealert.com/study-finds-just-the-kind-of-people-who-were-panic-buying-all-of-the-toilet-paper">Learn
+                           more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card" id="murder-hornets-1">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner murder-hornets">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack5">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventFive">Murder Hornets Arrive</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageFive" src="./images/hornet.jpeg" alt="image of hornet" class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkFive"
+                           href="https://www.npr.org/2020/10/23/927235267/first-murder-hornet-nest-in-u-s-is-found-in-washington-state">Learn
+                           more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card" id="murder-hornets-2">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner murder-hornets">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack6">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventSix">Murder Hornets Arrive</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageSix" src="./images/hornet.jpeg" alt="image of hornet" class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkSix"
+                           href="https://www.npr.org/2020/10/23/927235267/first-murder-hornet-nest-in-u-s-is-found-in-washington-state">Learn
+                           more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card" id="pandemic-1">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner pandemic">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack7">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventSeven">Covid-19 pandemic hits worldwide</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageSeven" src="./images/pandemic.jpeg" alt="image of coronavirus" class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkSeven"
+                           href="https://www.ajmc.com/view/a-timeline-of-covid19-developments-in-2020">Learn more</a>
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Car 8 -->
+      <div class="card" id="pandemic-2">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner pandemic">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack8">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventEight">Covid-19 pandemic hits worldwide</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageEight" src="./images/pandemic.jpeg" alt="image of 2020 event" class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkEight"
+                           href="https://www.ajmc.com/view/a-timeline-of-covid19-developments-in-2020">Learn more</a>
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="card" id="rbg-1">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner rbg">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack9">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventNine">Legendary Ruth Bader Ginsburg dies</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageNine" src="./images/ruth-bader-ginsburg-1.jpg" alt="image of Ruth Bader Ginsburg"
+                        class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkNine"
+                           href="https://www.npr.org/2020/09/18/100306972/justice-ruth-bader-ginsburg-champion-of-gender-equality-dies-at-87">Learn
+                           more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Car 10 -->
+      <div class="card" id="rbg-2">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner rbg">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack10">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventTen">Legendary Ruth Bader Ginsburg dies</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageTen" src="./images/ruth-bader-ginsburg-1.jpg" alt="image of Ruth Bader Ginsburg"
+                        class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkTen"
+                           href="https://www.npr.org/2020/09/18/100306972/justice-ruth-bader-ginsburg-champion-of-gender-equality-dies-at-87">Learn
+                           more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="card" id="ufo-1">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner ufo">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack11">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventEleven">Pentagon releases UFO videos</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageEleven" src="./images/ufo.jpeg" alt="image of UFO" class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkEleven"
+                           href="https://www.bbc.com/news/world-us-canada-52457805">Learn more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 12 -->
+      <div class="card" id="ufo-2">
+         <!--outer card that handles perspective and stuff-->
+         <div class="card__inner ufo">
+            <!--actually does the flipping-->
+            <div class="card__face  card__face--front">
+               <!-- front of card with 2 classes (card-face and card-face-front) -->
+               <img src="./images/2020-card-art.jpg" alt="playing card background" class="c-pattern" />
+            </div>
+            <div class="card__face  card__face--back" id="cardBack12">
+               <!-- back of card with 2 classes (card-face and card-face-back) -->
+               <div class="card__content">
+                  <div class="card__header">
+                     <h1 id="eventTwelve">Pentagon releases UFO videos</h1>
+                  </div>
+                  <div class="card__body">
+                     <img id="imageTwelve" src="./images/ufo.jpeg" alt="image of UFO" class="e-photo" />
+                     <p><a target="_blank" onclick="linkClick(event)" id="linkTwelve"
+                           href="https://www.bbc.com/news/world-us-canada-52457805">Learn more</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- <scrip src="./script2.js"></scrip> -->
+   <script src="./script.js"></script>
+</body>
+
+</html>
